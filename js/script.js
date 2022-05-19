@@ -4,6 +4,7 @@ import initAccordion from "./modules/accordion.js";
 import tabNavigation from "./modules/navigation.js";
 import initModal from "./modules/modal.js";
 import initToolTip from "./modules/tooltip.js"
+import initDropdownMenu from "./modules/dropdown.js"
 
 initScrollSuave();
 initAnimacaoScroll();
@@ -11,3 +12,4 @@ initAccordion();
 tabNavigation();
 initModal();
 initToolTip()
+initDropdownMenu()
