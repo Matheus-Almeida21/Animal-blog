@@ -38,7 +38,7 @@ export default class AnimaNumeros {
     }
   }
 
-  // Adicona o MutationObserver para verificar quando a classe ativo é adicionada ao element target
+  // Adiciona o MutationObserver para verificar quando a classe ativo é adicionada ao element target
   addMutationObserver() {
     this.observer = new MutationObserver(this.handleMutation);
     this.observer.observe(this.observerTarget, { attributes: true });
