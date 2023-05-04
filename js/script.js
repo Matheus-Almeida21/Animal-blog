@@ -8,9 +8,11 @@ import initDropdownMenu from './modules/dropdown.js';
 import initMenuMobile from './modules/menu-mobile.js';
 import initFuncionamento from './modules/funcionamento.js';
 import fetchAnimais from './modules/fetch-animais.js';
-import initFetchBitcoin from './modules/fetch-bitcoin.js';
+import fetchBitcoin from './modules/fetch-bitcoin.js';
 
 fetchAnimais('./animaisApi.json', '.numero-grid');
+
+fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
 
 const toolTip = new ToolTip('[data-tooltip]');
 toolTip.init();
@@ -33,4 +35,3 @@ modal.toggleModal();
 initDropdownMenu();
 initMenuMobile();
 initFuncionamento();
-initFetchBitcoin();
