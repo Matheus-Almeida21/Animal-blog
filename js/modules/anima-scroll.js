@@ -1,19 +1,50 @@
-export default function initAnimacaoScroll() {
-  const sections = document.querySelectorAll('[data-anime="scroll"]');
+import debounce from './debounce.js';
 
-  const windowMetade = window.innerHeight * 0.6;
-  function animaScroll() {
-    sections.forEach((section) => {
-      const sectionTop = section.getBoundingClientRect().top - windowMetade;
-      if (sectionTop < 0) {
-        section.classList.add('ativo');
+export default class AnimaScroll {
+  constructor(sections) {
+    this.sections = document.querySelectorAll(sections);
+    this.windowMetade = window.innerHeight * 0.6;
+    // Faz o bind no metodo para que faça referencia ao this do objeto
+    this.checkDistance = debounce(this.checkDistance.bind(this), 200);
+  }
+
+  // Pega a distancia de cada item em relação ao topo da pagina
+  getDistance() {
+    this.distance = [...this.sections].map((section, index, array) => {
+      const sectionTop = section.offsetTop;
+      console.log(sectionTop);
+      return {
+        element: section,
+        offset: index !== array.length - 1 ? Math.floor(sectionTop - this.windowMetade)
+          : Math.floor(sectionTop - (window.innerHeight * 0.2)),
+      };
+    });
+    console.log(this.distance);
+  }
+
+  // Verifica a distancia em cada objeto em relação ao scroll do site
+  checkDistance() {
+    console.log('teste');
+    this.distance.forEach((item) => {
+      if (window.pageYOffset > item.offset) {
+        item.element.classList.add('ativo');
+      } else if (item.element.classList.contains('ativo')) {
+        item.element.classList.remove('ativo');
       }
     });
   }
 
-  if (sections.length) {
-    animaScroll();
-    window.addEventListener('scroll', animaScroll);
+  init() {
+    if (this.sections.length) {
+      this.getDistance();
+      this.checkDistance();
+      window.addEventListener('scroll', this.checkDistance);
+    }
+    return this;
+  }
+
+  // Remove o evento de scroll
+  stop() {
+    window.removeEventListener('scroll', this.checkDistance);
   }
 }
-// initAnimacaoScroll()
