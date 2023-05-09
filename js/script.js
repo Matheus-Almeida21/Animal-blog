@@ -6,13 +6,17 @@ import Modal from './modules/modal.js';
 import ToolTip from './modules/tooltip.js';
 import DropdownMenu from './modules/dropdown.js';
 import MenuMobile from './modules/menu-mobile.js';
-import initFuncionamento from './modules/funcionamento.js';
+import Funcionamento from './modules/funcionamento.js';
 import fetchAnimais from './modules/fetch-animais.js';
 import fetchBitcoin from './modules/fetch-bitcoin.js';
 
 fetchAnimais('./animaisApi.json', '.numero-grid');
 
 fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
+
+const funcionamento = new Funcionamento('[data-semana]', 'aberto');
+funcionamento.init();
+console.log(funcionamento);
 
 const menuMobile = new MenuMobile('[data-menu="button"]', '[data-menu="list"]');
 menuMobile.init();
@@ -38,5 +42,3 @@ navigation.init();
 const modal = new Modal('[data-modal="abrir"]', '[data-modal="fechar"]', '[data-modal="container"]');
 modal.init();
 modal.toggleModal();
-
-initFuncionamento();
