@@ -126,7 +126,6 @@ class Slide {
   }
 
   onResize() {
-    console.log('teste');
     setTimeout(() => {
       this.slidesConfig();
       this.changeSlide(this.index.active);

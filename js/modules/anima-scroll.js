@@ -12,16 +12,19 @@ export default class AnimaScroll {
   getDistance() {
     this.distance = [...this.sections].map((section, index, array) => {
       const sectionTop = section.offsetTop;
+      // console.log(sectionTop);
       return {
         element: section,
         offset: index !== array.length - 1 ? Math.floor(sectionTop - this.windowMetade)
           : Math.floor(sectionTop - (window.innerHeight * 0.2)),
       };
     });
+    // console.log(this.distance);
   }
 
   // Verifica a distancia em cada objeto em relação ao scroll do site
   checkDistance() {
+    // console.log('teste');
     this.distance.forEach((item) => {
       if (window.pageYOffset > item.offset) {
         item.element.classList.add('ativo');
