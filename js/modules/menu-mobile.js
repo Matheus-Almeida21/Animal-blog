@@ -36,9 +36,7 @@ export default class MenuMobile {
   openMenu() {
     this.menuList.classList.add(this.activeClass);
     this.menuButton.classList.add(this.activeClass);
-    console.log('adicionou classe');
     outsideClick(this.menuList, this.events, () => {
-      console.log('removeu classe');
       this.menuList.classList.remove(this.activeClass);
       this.menuButton.classList.remove(this.activeClass);
     });
